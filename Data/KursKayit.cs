@@ -8,6 +8,11 @@ namespace KursUygulamasi.Data
         [Display(Name = "Kayıt No")]
         public int KayitId { get; set;}
 
+        public void setKayitId(int kid)
+        {
+            this.KayitId = kid;
+        }
+
         public int OgrenciId { get; set;}
 
         public int KursId { get; set; }

@@ -45,6 +45,7 @@ namespace KursUygulamasi.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
+                        Console.WriteLine(id);
             if (id == null)
             {
                 return NotFound();
@@ -86,10 +87,21 @@ namespace KursUygulamasi.Controllers
             {
                 try
                 {
-                    _context.Update(new Kurs() { KursId = model.KursId, Baslik = model.Baslik, OgretmenId = model.OgretmenId});
+                    // Fetch the existing entity from the database
+                    var existingKurs = await _context.Kurslar.FindAsync(model.KursId);
+                    if (existingKurs == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Update the properties of the existing entity
+                    existingKurs.Baslik = model.Baslik;
+                    existingKurs.OgretmenId = model.OgretmenId;
+
+                    // Save the changes
                     await _context.SaveChangesAsync();
                 }
-                catch(DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException)
                 {
                     if (!_context.Kurslar.Any(k => k.KursId == model.KursId))
                     {
@@ -104,6 +116,7 @@ namespace KursUygulamasi.Controllers
             }
             return View(model);
         }
+
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {

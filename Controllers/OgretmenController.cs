@@ -63,10 +63,9 @@ namespace KursUygulamasi.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Ogretmen model)
         {
-            Console.WriteLine(model.OgretmenId);
+
             if (id != model.OgretmenId)
             {
-                Console.WriteLine("Yes, its not meant to happen");
                 return NotFound();
             }
 
@@ -94,6 +93,38 @@ namespace KursUygulamasi.Controllers
                 return RedirectToAction("Index");
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            var ogretmen = await _context.Ogretmenler.FindAsync(id);
+
+            if (ogretmen == null)
+            {
+                return NotFound();
+            }
+
+            return View(ogretmen);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Console.WriteLine(id);
+            var ogretmen = await _context.Ogretmenler.FindAsync(id);
+            if(ogretmen == null)
+            {
+                return NotFound();
+            }
+            _context.Ogretmenler.Remove(ogretmen);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
     }

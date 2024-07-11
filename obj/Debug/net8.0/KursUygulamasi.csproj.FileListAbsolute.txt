@@ -135,3 +135,4 @@ C:\Programming\KursUygulamasi\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspa
 C:\Programming\KursUygulamasi\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Programming\KursUygulamasi\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Programming\KursUygulamasi\bin\Debug\net8.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+C:\Programming\KursUygulamasi\obj\Debug\net8.0\KursUygulamasi.sourcelink.json

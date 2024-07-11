@@ -3,10 +3,7 @@
 <div class="row">
     <div class="col-8">
         <form asp-controller="Kurs" asp-action="Edit" method="post">
-            <div class="mb-3">
-                <label asp-for="KursId" class="form-label">Kurs Id</label>
-                <input asp-for="KursId" class="form-control">
-            </div>
+            <input asp-for="KursId" hidden>
             <div class="mb-3">
                 <label asp-for="Baslik" class="form-label">Kurs İsmi</label>
                 <input asp-for="Baslik" class="form-control">

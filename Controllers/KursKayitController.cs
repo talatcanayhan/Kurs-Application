@@ -36,12 +36,41 @@ namespace KursUygulamasi.Controllers
         public async Task<IActionResult> Create(KursKayit model)
         {
             model.KayitTarihi = DateTime.Now;
+            Console.WriteLine(model.KayitId);
             _context.KursKayitlari.Add(model);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+            var kurskayit = await _context.KursKayitlari.FindAsync(id);
+            if (kurskayit == null)
+            {
+                Console.WriteLine(id);
+                return NotFound();
+            }
+            return View(kurskayit);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Console.WriteLine(id);
+            var kurskayit = await _context.KursKayitlari.FindAsync(id);
+            if(kurskayit == null)
+            {
+                return NotFound();
+            }
+            _context.KursKayitlari.Remove(kurskayit);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
     }
-
-
 }
