@@ -1,0 +1,30 @@
+@model IEnumerable<Ogretmen>
+
+<h2>Öğretmen Listesi</h2>
+<hr>
+<a href="/Ogretmen/create" class="btn btn-sm btn-primary">Öğretmen Ekle</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ogretmen Id</th>
+            <th>Ogretmen Ad</th>
+            <th>Ogretmen Soyad</th>
+            <th></th>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.OgretmenId)</td>
+                <td>@Html.DisplayFor(modelItem => item.Ad)</td>
+                <td>@Html.DisplayFor(modelItem => item.Soyad)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.OgretmenId" class="btn btn-sm btn-danger">Detaylar</a>
+                    <a asp-action="Delete" asp-route-id="@item.OgretmenId" class="btn btn-sm btn-danger">Sil</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
